@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.ls.order.dao.OrderMapper">
+
+    <!-- 查询使用 select标签
+            id = 方法名  绑定对应接口的方法名
+            resultType = 返回值类型   方法的返回值类型
+            标签内编写SQL语句          sql的参数和方法的参数一致
+     -->
+    <select id="selectAll" resultType="com.ls.order.pojo.Order">
+        <!-- #{empId}代表动态传入的参数,并且进行赋值!后面详细讲解 -->
+        select * from oder
+    </select>
+    <update id="updateone" >
+        <!-- #{empId}代表动态传入的参数,并且进行赋值!后面详细讲解 -->
+        update oder set person =#{person},tel = #{tel},addr=#{addr},
+        status=#{status},product=#{product}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteone">
+        delete from oder where id = #{id}
+    </delete>
+    <insert id="insertOne">
+        insert into oder values(null,#{person},#{tel},#{addr},#{product},#{status})
+    </insert>
+</mapper>

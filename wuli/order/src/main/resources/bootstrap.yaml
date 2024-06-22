@@ -1,0 +1,25 @@
+#配置信息不在直接卸载application.yaml文件中
+#bootstrap.yaml  用于配置nacos的配置中心
+server:
+  port: 8094
+spring:
+  application:
+    name: order-server
+  profiles:
+    active: dev
+  cloud:
+    #nacos注册发现配置
+    nacos:
+      discovery:
+        server-addr: localhost:8848     # nacos服务注册中心地址
+        username: nacos
+        password: nacos
+      #nacos配置中心哦欸之
+      config:
+        server-addr: localhost:8848     # nacos作为配置中心地址
+        file-extension: yaml             # 指定yaml格式的配置
+        username: nacos
+        password: nacos
+#本地没有对项目的具体配置，配置文件在nacos的配置中心，需要从服务器上下载文件
+#配置中心的新建配置，配置dataid = 服务名-环境吗.问及那格式
+#当前服务就会去配置中心  sysuser-server-dev.yaml  下载
